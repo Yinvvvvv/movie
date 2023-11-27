@@ -6,34 +6,34 @@ from movie import db
 
 #定义数据模型
 
-class Movies(db.Model):
-    __tablename__="Movies"
+class Movie_Info(db.Model):
+    __tablename__="movie_info"
     movie_id=db.Column(db.String(10),primary_key=True)
     movie_name=db.Column(db.String(50))
     release_date=db.Column(db.DateTime)
-    country_movie=db.Column(db.String(20))
+    country=db.Column(db.String(20))
     type=db.Column(db.String(10))
     year=db.Column(db.Integer)
-    box=db.Column(db.Float)
-    relationship=db.relationship("Movie_Actor_Relationship",backref="movies")
+    #box=db.relationship("Movie_Box", backref="movie_info", uselist=False)
+    actors=db.relationship("Movie_Actor_Relation",backref="movie_info")
 
-class Actors(db.Model):
-    __tablename__="Actors"
+class Actor_Info(db.Model):
+    __tablename__="actor_info"
     actor_id=db.Column(db.String(10),primary_key=True)
     actor_name=db.Column(db.String(20))
     gender=db.Column(db.String(2))
-    country_actor=db.Column(db.String(20))
-    relationship=db.relationship("Movie_Actor_Relationship",backref="actors")
+    country=db.Column(db.String(20))
+    relationship=db.relationship("Movie_Actor_Relation",backref="actor_info")
 
-class Movie_Actor_Relationship(db.Model):
-    __tablename__="Movie_Actor_Relationship"
-    relation_id=db.Column(db.String(10),primary_key=True)
-    movie_id = db.Column(db.String(10), db.ForeignKey("Movies.movie_id"))
-    person_id = db.Column(db.String(10), db.ForeignKey("Actors.actor_id"))
-    role_type = db.Column(db.String(20))
+class Movie_Actor_Relation(db.Model):
+    __tablename__="movie_actor_relation"
+    id=db.Column(db.String(10),primary_key=True)
+    movie_id = db.Column(db.String(10), db.ForeignKey("movie_info.movie_id"))
+    actor_id = db.Column(db.String(10), db.ForeignKey("actor_info.actor_id"))
+    relation_type = db.Column(db.String(20))
 
-class Box(db.Model):
-    __tablename__="Box"
-    box_id=db.Column(db.String(10),primary_key=True)
-    movie_id=db.Column(db.String(10),db.ForeignKey("Movies.movie_id"))
+class Movie_Box(db.Model):
+    __tablename__="movie_box"
+    movie_id=db.Column(db.String(10),primary_key=True)
     box=db.Column(db.Float)
+    #movie=db.relationship("Movie_Info", backref='box', uselist=False)

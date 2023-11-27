@@ -22,8 +22,8 @@
     <!--导航栏-->
     <nav>
         <ul>
-            <li><a href="{{ url_for('add_movie') }}">Movie</a></li>
-       
+            <li><a href="{{ url_for('add_movie') }}">Add Movie</a></li>
+            <li><a href="{{ url_for('existing_movies') }}">Existing Movies</a></li>
         </ul>
     </nav>
     {% block content %}{% endblock %}
