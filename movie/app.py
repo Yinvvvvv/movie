@@ -18,6 +18,8 @@ app.config["SQLALCHEMY_DATABASE_URI"] = r"mysql://root:123456@localhost:3306/mov
 app.config['SECRET_KEY'] = 'secret_key'
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = True
 app.config['SQLALCHEMY_DATABASE_CHARSET'] = 'utf8' 
+# Example in __init__.py
+app.config['TEMPLATES_AUTO_RELOAD'] = True
 
 db = SQLAlchemy(app)
 # login_manage = LoginManager(app)

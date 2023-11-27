@@ -14,3 +14,6 @@ class MovieForm(FlaskForm):
     type = StringField('Type', validators=[InputRequired()])
     year = IntegerField('Year', validators=[InputRequired()])
     #box = FloatField('Box')  # You can customize this as needed
+
+class MovieSearchForm(FlaskForm):
+    search_term = StringField('Search Term', validators=[InputRequired()])
